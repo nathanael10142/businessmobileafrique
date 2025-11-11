@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Gestion des Produits - Administration</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+    
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="admin.css">
+
+    <!-- Choices.js pour les selects avec recherche -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+
+    <!-- Scripts de base Firebase (nécessaires pour le garde) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="../js/firebase-init.js"></script>
+    <script src="../js/auth-guard.js"></script> <!-- ✅ SCRIPT DE GARDE AJOUTÉ ICI -->
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <button class="admin-menu-toggle" id="adminMenuToggle"><i class="fa-solid fa-bars"></i></button>
+        <div>
+            <h1><i class="fa-solid fa-box-open"></i> Gestion des Produits</h1>
+            <p>Business Mobile Afrique</p>
+        </div>
+        <div>
+            <!-- Ce bouton est géré par admin.js, pas besoin de le mettre dans le menu principal -->
+        </div>
+    </header>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                    <li class="active"><a href="articles.html"><i class="fa-solid fa-pen-to-square"></i> Gestion des Articles</a></li>
+                    <li><a href="users.html"><i class="fa-solid fa-users-cog"></i> Gestion Utilisateurs</a></li>
+                    <li><a href="payments.html"><i class="fa-solid fa-credit-card"></i> Gestion des Paiements</a></li>
+                    <li><a href="accounting.html"><i class="fa-solid fa-calculator"></i> Comptabilité</a></li>
+                    <li><a href="comments.html"><i class="fa-solid fa-comments"></i> Modération Commentaires</a></li>
+                    <li><a href="contacts.html"><i class="fa-solid fa-envelope"></i> Messagerie</a></li>
+                </ul>
+            </nav>
+            <div class="admin-sidebar-footer mt-auto">
+                <a href="../index.html" target="_blank" class="btn btn-secondary" style="width: 100%; margin-bottom: 1rem;"><i class="fa-solid fa-eye"></i> Voir le site</a>
+                <button id="logoutBtn" class="btn btn-danger" style="width: 100%;"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</button>
+            </div>
+        </aside>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Product List View -->
+            <div id="articleListView">
+                <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-1">
+                    <h2><i class="fa-solid fa-list-ul"></i> Tous les produits</h2>
+                    <button id="newArticleBtn" class="btn btn-primary">
+                        <i class="fa-solid fa-plus"></i> Nouveau produit
+                    </button>
+                </div>
+
+                <div id="alertContainer"></div>
+
+                <!-- Products Table -->
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Catégorie</th>
+                                <th>Auteur</th>
+                                <th>Vues</th>
+                                <th>Prix</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="articlesTableBody">
+                            <tr>
+                                <td colspan="7" class="text-center">
+                                    <div class="spinner"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Product Editor View -->
+            <div id="articleEditorView" style="display: none;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h2 id="editorTitle"><i class="fa-solid fa-pen-to-square"></i> Nouveau produit</h2>
+                    <button id="backToListBtn" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i> Retour à la liste
+                    </button>
+                </div>
+
+                <div id="editorAlert"></div>
+
+                <form id="articleForm">
+                    <input type="hidden" id="articleId">
+
+                    <!-- Section Informations Principales -->
+                    <div class="form-section card">
+                        <h3><i class="fa-solid fa-info-circle text-gold"></i> Informations Principales</h3>
+                        <div class="form-group">
+                            <label for="articleTitle" class="form-label">Titre du produit *</label>
+                            <input type="text" id="articleTitle" class="form-input" required placeholder="Ex: Le guide complet du marketing digital">
+                        </div>
+                        <div class="form-group">
+                            <label for="articleSlug" class="form-label">URL (slug) *</label>
+                            <input type="text" id="articleSlug" class="form-input" required placeholder="Ex: guide-marketing-digital">
+                            <small class="text-muted">Généré automatiquement depuis le titre.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="articleAuthor" class="form-label">Auteur *</label>
+                            <input type="text" id="articleAuthor" class="form-input" required value="Jean Marie Business">
+                        </div>
+                    </div>
+
+                    <!-- Section Contenu -->
+                    <div class="form-section card">
+                        <h3><i class="fa-solid fa-file-alt text-gold"></i> Contenu du Produit</h3>
+                        <div class="form-group">
+                            <label for="productType" class="form-label">Type de Produit *</label>
+                            <select id="productType" class="form-select" required>
+                                <option value="livre">📚 Livre Numérique</option>
+                                <option value="journal">📰 Journal / Magazine</option>
+                                <option value="article">📝 Article Premium</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="articleCategory" class="form-label">Catégorie</label>
+                            <select id="articleCategory" class="form-select">
+                                <!-- Options chargées par JS -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="articleExcerpt" class="form-label">Résumé (accroche commerciale) *</label>
+                            <textarea id="articleExcerpt" class="form-textarea" required placeholder="Un court résumé pour donner envie d'acheter (150-200 caractères)" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="articleContent" class="form-label">Description détaillée du produit *</label>
+                            <textarea id="articleContent" class="form-textarea editor-container" required placeholder="Décrivez le contenu du livre, son auteur, le nombre de pages, etc."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Section Média -->
+                    <div class="form-section card">
+                        <h3><i class="fa-solid fa-photo-film text-gold"></i> Fichiers & Média</h3>
+                        <div class="form-group">
+                            <label for="articleImage" class="form-label">Image de couverture (URL)</label>
+                            <div class="d-flex gap-1">
+                                <input type="url" id="articleImage" class="form-input" readonly placeholder="Le lien apparaîtra ici...">
+                                <button type="button" id="uploadImageBtn" class="btn btn-secondary flex-shrink-0"><i class="fa-solid fa-image"></i> Téléverser</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fileUrl" class="form-label">Lien du Fichier PDF *</label>
+                            <div class="d-flex gap-1">
+                                <input type="url" id="fileUrl" class="form-input" required readonly placeholder="Le lien apparaîtra ici...">
+                                <button type="button" id="uploadFileBtn" class="btn btn-secondary flex-shrink-0"><i class="fa-solid fa-upload"></i> Téléverser</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section Tarification et Publication -->
+                    <div class="form-section card">
+                        <h3><i class="fa-solid fa-rocket text-gold"></i> Tarification & Publication</h3>
+                        <div class="form-group">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="articleIsPaid">
+                                <span class="toggle-slider"></span>
+                                <span class="toggle-label">💰 Produit payant</span>
+                            </label>
+                        </div>
+
+                        <div id="priceFields" style="display: none; margin-bottom: 1rem;">
+                            <div class="grid-responsive-cols gap-1">
+                                <div class="form-group">
+                                    <label for="articlePriceUSD" class="form-label">Prix en Dollars (USD)</label>
+                                    <input type="number" id="articlePriceUSD" class="form-input" placeholder="Ex: 5.00" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label for="articlePriceCDF" class="form-label">Prix en Francs Congolais (CDF)</label>
+                                    <input type="number" id="articlePriceCDF" class="form-input" placeholder="Ex: 12500" step="100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-responsive-cols gap-1 mb-2">
+                            <div class="form-group">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="articlePublished" checked>
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">✅ Publier le produit</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="articleFeatured">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">⭐ Produit à la une</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boutons d'action -->
+                    <div class="d-flex gap-1 flex-wrap mt-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-save"></i> Enregistrer le produit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <!-- ✅ AJOUT : MODALE DE MISE À JOUR DISPONIBLE -->
+    <div id="updateAvailableModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content text-center">
+            <div class="modal-header" style="justify-content: center;">
+                <h3 class="modal-title"><i class="fa-solid fa-rocket"></i> Mise à jour disponible !</h3>
+            </div>
+            <div class="modal-body">
+                <p>Une nouvelle version de l'application est prête. Mettez à jour maintenant pour profiter des dernières fonctionnalités et corrections.</p>
+                <button id="updateNowBtn" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-sync-alt"></i> Mettre à jour maintenant</button>
+                <button id="updateLaterBtn" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Plus tard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bytescale Upload Widget -->
+    <script src="https://js.bytescale.com/upload-widget/v4"></script>
+
+    <!-- Choices.js pour les selects avec recherche -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/update-handler.js"></script>
+    <script src="../js/admin-articles.js"></script>
+</body>
+</html>

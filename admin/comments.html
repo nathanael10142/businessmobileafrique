@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Gestion des Commentaires - Administration</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+    
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="admin.css">
+
+    <!-- Scripts de base Firebase (nécessaires pour le garde) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="../js/firebase-init.js"></script>
+    <script src="../js/auth-guard.js"></script> <!-- ✅ SCRIPT DE GARDE AJOUTÉ ICI -->
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <button class="admin-menu-toggle" id="adminMenuToggle"><i class="fa-solid fa-bars"></i></button>
+        <div>
+            <h1><i class="fa-solid fa-comments"></i> Gestion des Commentaires</h1>
+            <p>Business Mobile Afrique</p>
+        </div>
+        <div>
+            <!-- Ce bouton est géré par admin.js, pas besoin de le mettre dans le menu principal -->
+        </div>
+    </header>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                    <li><a href="articles.html"><i class="fa-solid fa-pen-to-square"></i> Gestion des Articles</a></li>
+                    <li><a href="users.html"><i class="fa-solid fa-users-cog"></i> Gestion Utilisateurs</a></li>
+                    <li><a href="payments.html"><i class="fa-solid fa-credit-card"></i> Gestion des Paiements</a></li>
+                    <li><a href="accounting.html"><i class="fa-solid fa-calculator"></i> Comptabilité</a></li>
+                    <li class="active"><a href="comments.html"><i class="fa-solid fa-comments"></i> Modération Commentaires</a></li>
+                    <li><a href="contacts.html"><i class="fa-solid fa-envelope"></i> Messagerie</a></li>
+                </ul>
+            </nav>
+            <div class="admin-sidebar-footer mt-auto">
+                <a href="../index.html" target="_blank" class="btn btn-secondary" style="width: 100%; margin-bottom: 1rem;"><i class="fa-solid fa-eye"></i> Voir le site</a>
+                <button id="logoutBtn" class="btn btn-danger" style="width: 100%;"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</button>
+            </div>
+        </aside>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <h2><i class="fa-solid fa-comments"></i> Tous les commentaires</h2>
+
+            <div id="alertContainer"></div>
+
+            <!-- Filter -->
+            <div class="card mb-2">
+                <div class="form-group mb-0">
+                    <label for="commentFilter" class="form-label">Filtrer par statut :</label>
+                    <select id="commentFilter" class="form-select">
+                        <option value="all">Tous les commentaires</option>
+                        <option value="pending">En attente d'approbation</option>
+                        <option value="approved">Approuvés</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Comments List -->
+            <div id="commentsList">
+                <div class="spinner"></div>
+            </div>
+
+            <div id="noComments" class="d-none text-center p-3">
+                <p class="fs-1-2 text-muted">
+                    Aucun commentaire trouvé. 📭
+                </p>
+            </div>
+        </main>
+    </div>
+    <!-- ✅ AJOUT : MODALE DE MISE À JOUR DISPONIBLE -->
+    <div id="updateAvailableModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content text-center">
+            <div class="modal-header" style="justify-content: center;">
+                <h3 class="modal-title"><i class="fa-solid fa-rocket"></i> Mise à jour disponible !</h3>
+            </div>
+            <div class="modal-body">
+                <p>Une nouvelle version de l'application est prête. Mettez à jour maintenant pour profiter des dernières fonctionnalités et corrections.</p>
+                <button id="updateNowBtn" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-sync-alt"></i> Mettre à jour maintenant</button>
+                <button id="updateLaterBtn" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Plus tard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/update-handler.js"></script>
+    <script src="../js/admin-comments.js"></script>
+</body>
+</html>

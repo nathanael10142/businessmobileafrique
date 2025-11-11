@@ -1,0 +1,553 @@
+/* ===================================
+   BUSINESS MOBILE AFRIQUE
+   Styles de l'Administration - Design Pro Moderne
+   =================================== */
+
+/* === BASE & BODY === */
+body {
+    background-color: var(--color-gray-light);
+    transition: background-color var(--transition-normal);
+}
+
+/* === HEADER ADMIN === */
+.admin-header {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fixe le header en haut */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    box-shadow: var(--shadow-lg);
+    border-bottom: 2px solid var(--color-secondary);
+    gap: var(--spacing-sm); /* Ajoute un espace entre les éléments */
+}
+
+.admin-header > div:nth-child(2) {
+    flex-grow: 1; /* Permet au titre de prendre l'espace disponible */
+    text-align: center; /* Centre le titre */
+    overflow: hidden; /* Empêche le débordement */
+}
+
+.admin-menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--color-gold);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color var(--transition-fast);
+}
+
+.admin-menu-toggle:hover {
+    color: var(--color-white);
+}
+
+.admin-header h1 {
+    margin: 0;
+    color: var(--color-gold);
+    font-size: 1.5rem;
+    white-space: normal; /* Permet au titre de passer à la ligne */
+    transition: color var(--transition-fast);
+}
+
+.admin-header p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-gray-light);
+    display: none; /* Caché sur mobile pour plus de place */
+}
+
+/* === LAYOUT MOBILE-FIRST === */
+.admin-layout {
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px; /* Espace pour le header fixe */
+}
+
+.admin-sidebar {
+    background: rgba(30, 30, 30, 0.95); /* Fond sombre semi-transparent */
+    backdrop-filter: blur(10px);
+    color: var(--color-white);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    transform: translateX(-100%); /* Caché par défaut */
+    transition: transform var(--transition-normal);
+    z-index: 1002;
+    border-right: 1px solid var(--color-gold-dark);
+}
+
+.admin-sidebar.is-open {
+    transform: translateX(0);
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1001;
+}
+
+.sidebar-overlay.is-open {
+    display: block;
+}
+
+.admin-main {
+    padding: var(--spacing-md);
+    width: 100%;
+    /* animation: fadeIn 0.5s ease-out; */ /* Animation inutile supprimée */
+}
+
+.admin-main h2 {
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-gold);
+    padding-bottom: var(--spacing-sm);
+}
+
+.admin-main h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+}
+
+/* === NAVIGATION ADMIN (Sidebar) === */
+.admin-nav a {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    color: var(--color-white);
+    margin: var(--spacing-xs) 0;
+    border-radius: 50px; /* Forme de pilule */
+    transition: all var(--transition-fast);
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+
+.admin-nav a:hover,
+.admin-nav a.active {
+    background: var(--color-gold);
+    color: var(--color-primary);
+    transform: translateX(5px);
+    border-left-color: var(--color-white);
+}
+
+.admin-nav a i {
+    width: 20px; /* Aligne les icônes */
+    text-align: center;
+}
+
+/* === TABLES === */
+.table-responsive {
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-white);
+}
+
+.admin-table th,
+.admin-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--color-gray-light);
+    vertical-align: middle;
+    transition: background-color var(--transition-fast);
+}
+
+.admin-table th {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-gray-dark));
+    color: var(--color-gold);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+}
+
+.admin-table tr:hover {
+    background: #f8f9fa;
+}
+
+/* === ACTIONS & FORMS === */
+.admin-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: var(--color-gray);
+    color: var(--color-white);
+}
+
+.editor-container {
+    min-height: 400px;
+}
+
+/* === UTILITIES & ANIMATIONS === */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.d-none {
+    display: none;
+}
+
+.fs-1-2 {
+    font-size: 1.2rem;
+}
+
+.text-muted {
+    color: var(--color-gray);
+}
+
+.justify-content-start {
+    justify-content: flex-start;
+}
+
+/* === NOUVEAU : Styles pour le formulaire d'édition d'article === */
+.form-section {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-gray-light);
+}
+
+.form-section h3 {
+    font-size: 1.2rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-gray-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.form-section h3 i {
+    margin-right: var(--spacing-sm);
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+/* Interrupteur (Toggle Switch) */
+.toggle-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    width: 50px;
+    height: 26px;
+    background-color: var(--color-gray);
+    border-radius: 34px;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: var(--transition-fast);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--color-secondary);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+}
+
+.toggle-label {
+    margin-left: var(--spacing-sm);
+    font-weight: 600;
+}
+
+/* === CHAT SYSTEM STYLES === */
+.chat-layout {
+    display: grid;
+    grid-template-columns: 1fr; /* Une seule colonne par défaut (mobile) */
+    height: calc(100vh - 80px - 4rem);
+    gap: 1rem;
+    overflow: hidden; /* Empêche le défilement */
+}
+
+.conversations-list {
+    background: var(--color-white);
+    border-radius: 12px;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease-in-out;
+}
+
+.conversation-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+/* ✅ AJOUT : Supprime la surbrillance bleue au toucher sur mobile */
+.conversation-item {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.conversation-item .unread-indicator {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+}
+
+.convo-details {
+    overflow: hidden; /* Important to contain the text */
+}
+
+.convo-details > div {
+    /* ✅ AJOUT : S'assure que le conteneur du nom et de la date prend toute la largeur */
+    width: 100%; 
+}
+
+.conversation-item.active {
+    background-color: var(--color-gray-light);
+}
+
+.chat-window {
+    background: var(--color-white);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-md);
+    position: fixed; /* Positionné par rapport à la fenêtre */
+    top: 80px; /* Hauteur du header admin + un peu de marge */
+    left: 100%; /* Caché à droite par défaut */
+    width: 100%;
+    height: calc(100vh - 80px); /* Prend toute la hauteur restante */
+    transition: left 0.3s ease-in-out;
+}
+
+.admin-main.chat-view-active .chat-window {
+    left: var(--spacing-md); /* Glisse en place */
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.chat-header h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.chat-back-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.chat-bubble {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    max-width: 75%;
+    line-height: 1.4;
+    box-shadow: var(--shadow-sm);
+}
+
+.chat-bubble.user {
+    /* ✅ MODIFICATION : Messages de l'utilisateur à droite */
+    background-color: var(--color-secondary); /* Couleur or pour les messages envoyés */
+    color: var(--color-primary);
+    align-self: flex-end; /* Aligne à droite */
+    border-bottom-right-radius: 2px; /* Effet "queue" de bulle */
+}
+
+.chat-bubble.admin {
+    /* ✅ MODIFICATION : Messages de l'admin (reçus) à gauche */
+    background-color: var(--color-gray-light); /* Couleur neutre pour les messages reçus */
+    color: var(--color-primary);
+    align-self: flex-start; /* Aligne à gauche */
+    border-bottom-left-radius: 2px; /* Effet "queue" de bulle */
+}
+
+/* ✅ AJOUT : Style pour les séparateurs de date */
+.chat-date-separator {
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-gray);
+    text-transform: uppercase;
+}
+
+/* ✅ AJOUT : Style pour les cartes de suggestion */
+.suggestion-card {
+    display: flex;
+    flex-direction: column;
+    /* ✅ AJOUT : Styles pour que la carte se comporte comme un lien */
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-fast);
+    /* ✅ AJOUT : Supprime la surbrillance bleue au toucher */
+    -webkit-tap-highlight-color: transparent;
+    gap: 1rem; /* Espace entre le contenu et le bouton */
+}
+
+.suggestion-card-actions {
+    text-align: right; /* Aligne le bouton à droite sur les grands écrans */
+}
+
+@media (max-width: 768px) {
+    .suggestion-card-actions .btn {
+        width: 100%; /* Le bouton prend toute la largeur sur mobile */
+    }
+}
+
+.chat-bubble small {
+    display: block;
+    text-align: right;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    opacity: 0.7;
+}
+
+.chat-reply-form .form-input {
+    width: auto; /* Annule le width: 100% par défaut */
+    flex-grow: 1; /* Permet au champ de prendre l'espace disponible */
+}
+
+.chat-reply-form .btn {
+    padding: 0; /* Annule le padding par défaut */
+    width: 45px; /* Largeur fixe */
+    height: 45px; /* Hauteur fixe */
+    flex-shrink: 0; /* Empêche le bouton de se réduire */
+    border-radius: 50%; /* Le rend parfaitement rond */
+}
+
+.chat-reply-form {
+    padding: var(--spacing-sm);
+    border-top: 1px solid var(--color-gray-light);
+}
+
+.chat-reply-form .form-group {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: 0;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    flex-shrink: 0; /* Prevents avatar from shrinking */
+}
+
+/* === RESPONSIVE - DESKTOP VIEW === */
+@media (min-width: 768px) {
+    .admin-menu-toggle {
+        display: none; /* Cache le bouton sur desktop */
+    }
+
+    .admin-header p {
+        display: block; /* Affiche le slogan sur desktop */
+    }
+
+    .admin-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        padding-top: 0; /* Plus besoin de padding-top */
+    }
+
+    .admin-header {
+        position: relative; /* Le header n'est plus fixe */
+        grid-column: 1 / -1; /* Prend toute la largeur */
+    }
+
+    .admin-sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        transform: translateX(0); /* Toujours visible */
+        background: var(--color-gray-dark);
+        backdrop-filter: none;
+        z-index: 100;
+    }
+
+    .sidebar-overlay {
+        display: none !important; /* Jamais visible sur desktop */
+    }
+
+    .admin-main {
+        /* animation: none; */ /* Pas d'animation de fondu sur desktop */
+    }
+
+    /* Chat layout for desktop */
+    .chat-layout {
+        grid-template-columns: 320px 1fr;
+    }
+
+    .chat-window {
+        position: relative; /* Revient à un positionnement normal */
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: calc(100vh - 80px - 4rem);
+    }
+
+    .chat-back-btn {
+        display: none; /* Cache le bouton retour sur desktop */
+    }
+}

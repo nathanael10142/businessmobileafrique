@@ -1,0 +1,1423 @@
+/* ===================================
+   BUSINESS MOBILE AFRIQUE
+   Style Global Ultra-Professionnel
+   Design Noir et Doré - 100% Responsive
+   =================================== */
+
+/* Styles pour les notifications au premier plan */
+.foreground-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    border-left: 5px solid var(--color-secondary);
+    animation: fadeIn 0.5s, fadeOut 0.5s 4.5s; /* Animation pour apparaître et disparaître */
+}
+.foreground-notification h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--color-gold);
+}
+
+/* === RESET & BASE === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Palette de couleurs noir et doré */
+    --color-primary: #121212; /* Gris très foncé, moins dur que le noir pur */
+    --color-secondary: #C5A059; /* Or riche et légèrement plus profond */
+    --color-gold: #E0B96F; /* Or plus lumineux pour les accents */
+    --color-gold-dark: #A07A3D; /* Or foncé pour le contraste */
+    --color-white: #FFFFFF;
+    --color-gray-light: #F0F0F0; /* Gris clair pour les fonds */
+    --color-gray: #A0A0A0; /* Gris moyen pour les textes secondaires */
+    --color-gray-dark: #3A3A3A; /* Gris foncé pour les textes principaux */
+    
+    /* Typographie */
+    --font-main: 'Lato', sans-serif; /* Police de corps de texte moderne et lisible */
+    --font-heading: 'Montserrat', sans-serif; /* Police de titre audacieuse et moderne */
+    
+    /* Espacements */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-md: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    --shadow-lg: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    --shadow-gold: 0 0 20px rgba(212,175,55,0.3);
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--color-gray-dark);
+    background-color: var(--color-white);
+    overflow-x: hidden;
+}
+
+/* === TYPOGRAPHY === */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading); /* Utilisation de la nouvelle police de titre */
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-gold); /* L'or plus lumineux pour le survol */
+}
+
+/* === HEADER & NAVIGATION === */
+.site-header {
+    background: var(--color-primary); /* Utilisation du gris très foncé */
+    color: var(--color-white); 
+    padding: 0; /* Le padding sera sur le container */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+    border-bottom: 2px solid var(--color-secondary);
+    transition: all var(--transition-normal); /* Transition pour l'effet de scroll */
+}
+
+.site-header.scrolled {
+    background: rgba(18, 18, 18, 0.9); /* Fond semi-transparent */
+    backdrop-filter: blur(10px); /* Effet de flou (pour les navigateurs compatibles) */
+    box-shadow: var(--shadow-lg);
+    border-bottom-color: var(--color-gold);
+    padding: 0; /* Assure que le padding ne change pas ici */
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: var(--spacing-sm) var(--spacing-sm);
+    min-height: 60px; /* Assure une hauteur minimale pour le header */
+    transition: padding var(--transition-normal);
+}
+
+.site-header.scrolled .header-container {
+    padding-top: var(--spacing-xs);
+    padding-bottom: var(--spacing-xs);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 2.5rem; /* Taille de l'icône du logo */
+    transition: font-size var(--transition-normal);
+}
+
+.site-header.scrolled .logo {
+    font-size: 2rem;
+    transform: translateY(0); /* Assure que le logo ne bouge pas verticalement */
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    margin: 0;
+}
+
+.site-tagline {
+    font-size: 0.85rem;
+    color: var(--color-gray-light);
+    margin: 0;
+}
+
+/* Navigation Menu */
+.nav-toggle {
+    display: none;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 1001; /* Pour être au-dessus du menu */
+    transition: var(--transition-fast);
+}
+
+.nav-toggle:hover {
+    background: var(--color-gold); /* L'or plus lumineux pour le survol */
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* ✅ AJOUT : Pousse les boutons d'action vers la droite */
+.main-nav-list > .nav-action-item:first-of-type {
+    margin-left: auto;
+}
+
+.main-nav a {
+    color: var(--color-white);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    position: relative; /* Pour le z-index */
+    border-radius: 4px;
+    transition: var(--transition-fast);
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    background: var(--color-secondary); /* Or riche pour l l'état actif/survol */
+    color: var(--color-primary); /* Texte en gris très foncé */
+}
+
+/* Styles pour les boutons dans la navigation */
+.main-nav .btn-nav,
+.main-nav .btn-nav-secondary {
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition-normal);
+    border: 2px solid transparent;
+}
+
+.main-nav .btn-nav {
+    background: var(--color-secondary);
+    color: var(--color-primary) !important; /* Important pour surcharger la couleur du lien */
+}
+
+.main-nav .btn-nav:hover {
+    background: var(--color-gold);
+}
+
+.main-nav .btn-nav-secondary {
+    border-color: var(--color-secondary);
+    color: var(--color-white) !important;
+}
+
+/* Search Bar */
+/* Styles par défaut pour desktop */
+.search-bar { 
+    margin-top: 0; /* Pas de marge supérieure par défaut */
+    width: auto; /* Laisser flex gérer la largeur */
+    flex-grow: 1; /* Permettre à la barre de recherche de prendre de l'espace */
+    max-width: 250px; /* Largeur maximale sur desktop */
+    margin-left: var(--spacing-md); /* Espacement à gauche de la nav */
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--color-secondary); /* Bordure en or riche */
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.search-bar input:focus {
+    border-color: var(--color-gold); /* Bordure en or lumineux au focus */
+    box-shadow: var(--shadow-gold); /* Ombre dorée au focus */
+}
+
+/* === HERO SECTION === */
+.hero-section {
+    background: linear-gradient(135deg, #000000 0%, #2a2a2a 100%);
+    color: var(--color-white);
+    padding: var(--spacing-xl) var(--spacing-sm);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    font-size: 5rem; /* Taille de l'icône hero */
+    color: var(--color-gold);
+    margin-bottom: var(--spacing-md);
+    /* animation: float 3s ease-in-out infinite; */ /* ✅ ANIMATION SUPPRIMÉE */
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.hero-title {
+    color: var(--color-white);
+    margin-bottom: var(--spacing-md);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-gold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-gray-light);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-md);
+}
+
+.btn {
+    display: inline-flex; /* Utiliser flex pour aligner icône et texte */
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm); /* Espacement entre l'icône et le texte */
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--color-secondary); /* Or riche */
+    color: var(--color-primary); /* Texte en gris très foncé */
+    box-shadow: var(--shadow-md); /* Ombre moyenne */
+}
+
+.btn-primary:hover {
+    background: var(--color-gold); /* Or lumineux au survol */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-secondary);
+}
+
+.btn-secondary:hover {
+    background: var(--color-secondary); /* Or riche au survol */
+    color: var(--color-primary); /* Texte en gris très foncé */
+}
+
+/* ✅ AJOUT : Style pour un bouton "outline" sur fond clair */
+.btn-outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-gray-dark);
+}
+
+.btn-outline:hover {
+    background: var(--color-gray-dark);
+    color: var(--color-white);
+}
+
+/* Forcer le texte des boutons admin en noir */
+.admin-layout .btn,
+.admin-layout .btn-secondary {
+    color: var(--color-primary) !important;
+    border-color: var(--color-secondary);
+}
+
+/* === CONTAINER === */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-md) var(--spacing-sm);
+}
+
+/* === SECTIONS === */
+.section {
+    padding: var(--spacing-xl) 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; /* Commence à 0 */
+    height: 3px;
+    background: linear-gradient(to right, var(--color-secondary), var(--color-gold));
+    transition: width 0.6s ease-out; /* Anime la largeur */
+}
+
+.section-title.is-visible::after {
+    width: 80px; /* S'anime à 80px de large */
+}
+
+.section-title i {
+    margin-right: var(--spacing-sm); /* Ajoute un espace à droite de l'icône dans les titres */
+    vertical-align: middle; /* Aligne mieux l'icône avec le texte */
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.category-card {
+    display: block;
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+    border: 1px solid var(--color-gray-light);
+    color: var(--color-primary);
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-secondary);
+}
+
+.category-icon {
+    font-size: 3.5rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+    transition: var(--transition-fast);
+}
+
+.category-card:hover .category-icon {
+    transform: scale(1.1);
+    color: var(--color-gold);
+}
+
+/* === CARDS === */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.card {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: var(--spacing-lg); /* Plus d'espacement interne */
+    box-shadow: var(--shadow-md); /* Ombre moyenne */
+    transition: var(--transition-normal);
+    border: 1px solid var(--color-gray-light); /* Bordure subtile */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-secondary); /* Bordure dorée au survol */
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+.card:hover .card-icon {
+    /* animation: bounceIcon 0.5s ease-out; */ /* ✅ ANIMATION SUPPRIMÉE */
+}
+
+
+.card-title {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-description {
+    color: var(--color-gray);
+}
+
+/* === BLOG POSTS === */
+.blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.blog-post {
+    background: var(--color-white);
+    border-radius: 12px;
+    overflow: hidden; /* Assure que le contenu ne déborde pas */
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+    border: 1px solid var(--color-gray-light); /* Bordure subtile */
+    position: relative;
+}
+
+.blog-post:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-secondary); /* Bordure dorée au survol */
+}
+
+.blog-post-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gray-dark) 100%);
+    color: var(--color-white);
+    padding: var(--spacing-md);
+}
+
+.blog-post-title {
+    color: var(--color-gold); /* Titre en or lumineux */
+    margin-bottom: var(--spacing-xs);
+}
+
+.blog-post-meta {
+    font-size: 0.9rem;
+    color: var(--color-gray-light);
+}
+
+.blog-post-content {
+    padding: var(--spacing-md);
+}
+
+.blog-post-excerpt {
+    color: var(--color-gray-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.read-more {
+    display: inline-block; /* Pour que le lien soit un bloc */
+    color: var(--color-secondary);
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.read-more:hover {
+    color: var(--color-gold);
+    text-decoration: underline;
+}
+
+.blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.product-card {
+    background: var(--color-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--color-gray-light);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.product-card-image-link {
+    display: block;
+    overflow: hidden;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.product-card-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.product-card:hover .product-card-image {
+    transform: scale(1.05);
+}
+
+.product-card-content {
+    padding: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+    flex-grow: 1;
+}
+
+.product-card-title a {
+    color: var(--color-primary);
+}
+
+.product-card-excerpt {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    margin-bottom: var(--spacing-sm);
+    flex-grow: 1;
+}
+
+.product-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-gray-light);
+    padding-top: var(--spacing-sm);
+}
+
+.product-card-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+.blog-post-price {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+/* === FORMS === */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600; /* Texte en gras */
+    color: var(--color-primary);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-gray); /* Bordure plus fine */
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-main); /* Utilisation de la nouvelle police */
+    transition: var(--transition-fast);
+    outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    border-color: var(--color-secondary); /* Bordure en or riche au focus */
+    box-shadow: var(--shadow-gold); /* Ombre dorée au focus */
+}
+
+.form-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* === FOOTER === */
+.site-footer {
+    background: var(--color-primary); /* Utilisation du gris très foncé */
+    color: var(--color-white);
+    padding: var(--spacing-lg) 0 var(--spacing-sm);
+    border-top: 3px solid var(--color-secondary);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-section h3 {
+    color: var(--color-gold); /* Titres en or lumineux */
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-section p,
+.footer-section a {
+    color: var(--color-gray-light);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer-links a:hover {
+    color: var(--color-gold);
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px; /* Taille des icônes sociales */
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: var(--transition-fast);
+}
+
+.social-link:hover {
+    background: var(--color-gold); /* Or lumineux au survol */
+    transform: scale(1.1);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-gray-dark);
+    color: var(--color-gray); /* Texte en gris moyen */
+}
+
+/* === ALERTS === */
+.alert {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-sm);
+    border-left: 4px solid;
+    transition: opacity 0.3s ease;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border-color: #28a745;
+}
+
+.alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border-color: #dc3545;
+}
+
+.alert-info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border-color: #17a2b8;
+}
+
+/* === UTILITIES === */
+.text-center {
+    text-align: center;
+}
+
+.text-gold {
+    color: var(--color-gold);
+}
+
+.text-success {
+    color: #155724;
+    font-weight: 600;
+}
+
+.text-danger {
+    color: #721c24;
+    font-weight: 600;
+}
+
+.bg-dark {
+    position: relative; /* Nécessaire pour positionner le pseudo-élément */
+    background-color: var(--color-primary); /* Couleur de fond solide */
+    color: var(--color-white);
+}
+
+/* Motif de fond pour les sections sombres */
+.bg-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%232a2a2a' fill-opacity='0.4' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.99 7.5V30L0 22.5v-7.5zM28 15v7.5L15 30V22.5L28 15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 100px; /* Taille du motif */
+    opacity: 0.1; /* Opacité subtile */
+    z-index: 0; /* Assure que le motif est derrière le contenu */
+    pointer-events: none; /* Permet d'interagir avec le contenu en dessous */
+}
+
+/* Assure que le contenu est au-dessus du motif */
+.bg-dark > .container {
+    position: relative;
+    z-index: 1;
+}
+
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+
+.d-flex { display: flex; }
+.justify-content-between { justify-content: space-between; }
+.align-items-center { align-items: center; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-1 { gap: 1rem; }
+.gap-0-5 { gap: 0.5rem; }
+
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.75rem; }
+    body { font-size: 0.95rem; } /* Légèrement plus petit pour la base */
+    
+    .hero-section {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+    
+    .main-nav { /* La navigation est cachée par défaut sur mobile */
+        /* Utilisation de max-height pour un collapse réel et animé */
+        visibility: hidden;
+        opacity: 0;
+        max-height: 0; /* Cache le contenu et ne prend pas d'espace vertical */
+        margin-top: 0; /* Supprime la marge quand le menu est caché */
+        transform: translateY(-10px); /* Commence légèrement au-dessus */
+        transition: opacity var(--transition-normal), transform var(--transition-normal), max-height var(--transition-normal) ease-out, visibility var(--transition-normal);
+        width: 100%;
+        flex-basis: 100%; /* Prend toute la largeur disponible */
+        order: 3; /* Apparaît après le logo/toggle et la barre de recherche */
+        background: var(--color-primary); /* Fond pour le menu mobile */
+        overflow: hidden; /* Cache le contenu qui dépasse pendant la transition */
+    }
+    
+    .main-nav.active {
+        /* Quand le menu est actif */
+        visibility: visible;
+        opacity: 1;
+        max-height: 500px; /* Hauteur suffisante pour afficher le menu */
+        transform: translateY(0); /* Glisse en place */
+        margin-top: var(--spacing-sm); /* Ajoute une marge quand le menu est visible */
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .main-nav a {
+        display: block;
+        padding: var(--spacing-sm);
+        border-bottom: 1px solid var(--color-gray-dark);
+    }
+    
+    .main-nav .btn-nav,
+    .main-nav .btn-nav-secondary {
+        display: block; /* Pour que les boutons prennent toute la largeur */
+        text-align: center;
+    }
+    .header-container {
+        justify-content: space-between; /* Garde logo et toggle séparés */
+        padding: var(--spacing-xs) var(--spacing-sm); /* Réduit le padding vertical du header sur mobile */
+    }
+
+    .search-bar { /* La barre de recherche prend toute la largeur sur mobile */
+        width: 100%;
+        margin-top: var(--spacing-xs); /* Réduit la marge au-dessus de la barre de recherche */
+        margin-left: 0; /* Supprime la marge gauche */
+        flex-basis: 100%; /* Prend toute la largeur disponible */
+        order: 2; /* Apparaît après le logo/toggle */
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    
+    .hero-icon {
+        font-size: 3.5rem;
+    }
+    
+    .cards-grid,
+    .blog-posts {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+        flex-direction: column; /* Empile les boutons verticalement */
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+    body {
+        font-size: 0.9rem; /* Encore plus petit pour les très petits écrans */
+    }
+    
+    .site-title {
+        font-size: 1.2rem;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+}
+
+/* === ANIMATIONS === */
+/* Animation de fondu et glissement pour les éléments */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animation de rebond pour les icônes de carte */
+@keyframes bounceIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Styles pour les éléments qui doivent s'animer au scroll */
+.fade-in, .section-title {
+    opacity: 1; /* ✅ ANIMATION SUPPRIMÉE : Rendu visible directement */
+    transform: translateY(0); /* ✅ ANIMATION SUPPRIMÉE : Pas de mouvement */
+    /* transition: opacity 0.6s ease-out, transform 0.6s ease-out; */
+}
+
+.fade-in.is-visible, .section-title.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ✅ AJOUT : Animation de pulsation pour les boutons importants */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7);
+    }
+    70% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 10px rgba(197, 160, 89, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(197, 160, 89, 0);
+    }
+}
+.btn-pulsing { animation: pulse 2s infinite; }
+
+/* === LOADING SPINNER === */
+.spinner {
+    border: 3px solid var(--color-gray-light);
+    border-top: 3px solid var(--color-secondary);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: var(--spacing-md) auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* === PRINT STYLES === */
+@media print {
+    .site-header,
+    .site-footer,
+    .nav-toggle,
+    .search-bar,
+    .cta-buttons,
+    .admin-sidebar {
+        display: none;
+    }
+}
+
+/* === MODAL DE PAIEMENT === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease-out;
+}
+.modal-content {
+    background: var(--color-white);
+    padding: 0;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    /* ✅ CORRECTION : Permet le défilement si le contenu est trop grand */
+    max-height: 90vh; /* Hauteur maximale de 90% de l'écran */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    animation: slideInUp 0.4s ease-out;
+    border: 2px solid var(--color-gold); /* ✅ AJOUT: Contour doré pour un look premium */
+}
+
+.modal-header {
+    background: var(--color-primary);
+    color: var(--color-gold);
+    border-top: 4px solid var(--color-secondary);
+    animation: slideInUp 0.4s ease-out;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--color-gray);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-title {
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-top: 0;
+    margin-bottom: 0;
+    color: var(--color-white); /* ✅ CORRECTION: Texte blanc pour un meilleur contraste */
+    font-size: 1.3rem;
+}
+
+.modal-body {
+    padding: var(--spacing-sm) var(--spacing-md); /* ✅ RÉDUIT : Moins d'espace en haut et en bas */
+    overflow-y: auto; /* ✅ AJOUT : Active le défilement vertical si nécessaire */
+    flex-grow: 1;
+}
+
+.payment-instructions {
+    background: var(--color-gray-light);
+    border-left: 3px solid var(--color-gold);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    border-radius: 8px;
+}
+
+.payment-instructions p {
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.1rem;
+}
+
+.payment-price, .payment-number {
+    font-weight: 700;
+    color: var(--color-secondary);
+    background: #fff;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.payment-footer {
+    margin-top: var(--spacing-md);
+    font-size: 0.9rem;
+    color: var(--color-gray-dark);
+    text-align: center;
+}
+
+.payment-steps {
+    margin-top: var(--spacing-md);
+    display: flex;
+    flex-direction: column; /* Les étapes sont empilées verticalement */
+    gap: var(--spacing-md);
+}
+
+.payment-step {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+}
+
+.step-number {
+    flex-shrink: 0; /* Ne pas rétrécir */
+    width: 30px; /* ✅ RÉDUIT: Taille plus discrète */
+    height: 30px; /* ✅ RÉDUIT: Taille plus discrète */
+    border-radius: 50%; /* Cercle parfait */
+    background: var(--color-secondary); /* Fond doré */
+    color: var(--color-primary); /* Chiffre en noir */
+    display: flex; /* Pour centrer le chiffre */
+    align-items: center; /* Centrage vertical */
+    justify-content: center; /* Centrage horizontal */
+    font-weight: 700; /* Chiffre en gras */
+    font-size: 1.1rem; /* ✅ RÉDUIT: Taille du chiffre */
+}
+
+.step-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-primary);
+}
+
+.step-description {
+    font-size: 0.95rem;
+    color: var(--color-gray-dark);
+    margin: 0;
+}
+
+.payment-method-airtel {
+    background: #fdecec;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.airtel-logo {
+    width: 80px;
+    margin-bottom: var(--spacing-xs);
+}
+
+.whatsapp-btn {
+    margin-top: var(--spacing-sm);
+    background: #25D366 !important; /* Couleur officielle de WhatsApp */
+    color: white !important;
+    border: none;
+}
+
+.whatsapp-btn:hover { background: #128C7E !important; }
+
+.payment-details-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 12px; /* Bords arrondis */
+    padding: var(--spacing-sm); /* ✅ RÉDUIT : Espacement interne plus compact */
+    margin-top: var(--spacing-sm); /* Marge au-dessus de la carte */
+    box-shadow: var(--shadow-sm);
+}
+
+.payment-logo-airtel {
+    /* ✅ CORRECTION: On utilise l'image en fond pour masquer le carré rouge */
+    width: 50px; /* ✅ RÉDUIT: Taille du logo */
+    height: 50px; /* ✅ RÉDUIT: Taille du logo */
+    margin: 0 auto var(--spacing-sm); /* Marge réduite */
+    border-radius: 50%; /* Cercle parfait */
+    background-image: url('../images/airtel.png'); /* Chemin vers l'image */
+    background-size: 150%; /* Zoom pour que le logo blanc remplisse le cercle */
+    background-position: center; /* Centre le logo dans le cercle */
+    background-color: #ED1C24; /* Couleur de fond rouge d'Airtel */
+}
+
+.payment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alignement en haut pour les textes sur plusieurs lignes */
+    padding: var(--spacing-xs) 0; /* ✅ RÉDUIT : Espacement vertical très réduit */
+    border-bottom: 1px solid var(--color-gray-light);
+    flex-wrap: wrap; /* Permet au contenu de passer à la ligne sur mobile */
+}
+
+.payment-info:last-child {
+    border-bottom: none; /* Pas de bordure pour le dernier élément */
+}
+
+/* Style spécifique pour centrer le montant */
+.payment-info.centered {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    text-align: center;
+    padding-bottom: var(--spacing-md);
+}
+
+.info-label {
+    font-size: 0.95rem;
+    color: var(--color-gray-dark);
+    flex-basis: 100%; /* ✅ CORRECTION : Le label prend toute la largeur sur mobile */
+}
+
+.info-value {
+    font-weight: 700;
+    font-family: var(--font-heading);
+}
+
+.info-value.price {
+    color: var(--color-secondary);
+    font-size: 1.2rem; /* ✅ RÉDUIT: Taille du prix */
+}
+
+.info-value.number {
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    word-break: break-all; /* ✅ AJOUT : Empêche le numéro de déborder */
+}
+
+.info-value.name {
+    color: var(--color-primary);
+}
+
+.info-value-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espace entre le numéro et le bouton copier */
+    gap: var(--spacing-sm);
+}
+
+.btn-copy {
+    background: var(--color-gray-light);
+    border: 1px solid #ddd;
+    color: var(--color-gray-dark);
+    border-radius: 8px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.btn-copy:hover {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-gold-dark);
+}
+
+.payment-info.beneficiary {
+    background: #fffbe6; /* Fond jaune très clair pour attirer l'attention */
+    padding: var(--spacing-sm);
+    margin: var(--spacing-sm) calc(-1 * var(--spacing-sm)) 0; /* ✅ CORRECTION : Prend toute la largeur de la carte parente */
+    border-radius: 8px;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-body > p:first-child {
+    text-align: center;
+    margin-bottom: var(--spacing-md); /* ✅ AJOUT: Espace sous le texte d'intro */
+    }
+}
+
+/* ✅ AJOUT : Styles spécifiques pour les petits écrans (Android) */
+@media (max-width: 480px) {
+    .payment-info {
+        flex-direction: column; /* Empile le label et la valeur */
+        align-items: flex-start; /* Aligne tout à gauche */
+        gap: 4px; /* Petit espace entre le label et la valeur */
+    }
+    .info-value-group { width: 100%; } /* Le groupe numéro + bouton prend toute la largeur */
+    .payment-info.centered { align-items: center; } /* Assure que le montant reste centré */
+}
+
+.article-header-pro {
+    text-align: center;
+    padding: var(--spacing-md) 0;
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.article-header-pro .category-badge {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.article-header-pro h1 {
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+}
+
+.article-header-pro .article-meta {
+    color: var(--color-gray);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .article-header-pro h1 { font-size: 2.2rem; }
+}
+
+.grid-responsive-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.confirmation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.confirmation-item:last-child {
+    border-bottom: none;
+}
+
+.item-details strong {
+    display: block;
+    color: var(--color-primary);
+}
+
+.item-details small {
+    color: var(--color-gray);
+    font-size: 0.85rem;
+}
+
+.badge.status-pending { background-color: #ffc107; color: var(--color-primary); }
+.badge.status-published { background-color: #28a745; }
+.badge.status-draft { background-color: #dc3545; }
+
+/* === USER CHAT CONTAINER (NOUVEAU) === */
+.user-chat-container {
+    max-width: 800px; /* Largeur maximale sur les grands écrans */
+    margin: 0 auto; /* Centrage horizontal parfait */
+    height: 75vh; /* Hauteur de 75% de la vue de l'écran */
+    background: var(--color-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-gray-light);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Empêche le contenu de déborder */
+}
+
+/* On s'assure que le header du chat utilisateur n'a pas de styles admin superflus */
+.user-chat-container .chat-header {
+    border-bottom: 1px solid var(--color-gray-light);
+}

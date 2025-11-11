@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Mobile Afrique - Digital • Revenu • Avenir</title>
+    
+    <!-- Favicon - CORRIGÉ -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48cGF0aCBmaWxsPSIjQzVBMDU5IiBkPSJNMzIwIDBIMTI4QzEwMS41IDAgODAgMjEuNDkgODAgNDh2NDE2QzgwIDQ5MC41IDEwMS41IDUxMiAxMjggNTEyaDE5MmMyNi41MSAwIDQ4LTIxLjQ5IDQ4LTQ4VjQ4QzM2OCAyMS40OSAzNDYuNSAwIDMyMCAwek0yMjQgNDgwYy0xNy42OSAwLTMyLTE0LjMyLTMyLTMyczE0LjMxLTMyIDMyLTMyczMyIDE0LjMyIDMyIDMyUzI0MS43IDQ4MCAyMjQgNDgwek0zMjAgNDAwSDEyOFY0OGgxOTJWNDAweiIvPjwvc3ZnPg==">
+    
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Business Mobile Afrique">
+    <meta property="og:description" content="Transforme ton smartphone en source de revenus">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://business-mobile-afrique.web.app/images/og-image.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C5A059">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <div>
+                    <h1 class="site-title">Business Mobile Afrique</h1>
+                    <p class="site-tagline">Digital • Revenu • Avenir</p>
+                </div>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <!-- Le menu sera injecté par JS -->
+            </nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">☰</button>
+            <div class="search-bar">
+                <input type="search" id="searchInput" placeholder="Rechercher..." aria-label="Rechercher sur le site">
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h2 class="hero-title">La Bibliothèque Digitale de l'Afrique</h2>
+            <p class="hero-subtitle">Livres, journaux et articles pour étudiants, élèves et professionnels.</p>
+            <div class="cta-buttons">
+                <a href="blog.html" class="btn btn-primary"><i class="fa-solid fa-store"></i> Explorer le Catalogue</a>
+                <a href="contact.html" class="btn btn-secondary"><i class="fa-solid fa-comments"></i> Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="section" style="background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-shapes"></i> Explorer par Catégorie</h2>
+            <div class="category-grid">
+                <a href="blog.html?category=livre" class="category-card fade-in">
+                    <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1887&auto=format&fit=crop');"></div>
+                    <div class="category-card-overlay"></div>
+                    <div class="category-card-content">
+                        <div class="category-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <h3 class="category-title">Livres Numériques</h3>
+                        <p>Manuels scolaires, romans, essais...</p>
+                    </div>
+                </a>
+                <a href="blog.html?category=journal" class="category-card fade-in">
+                    <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1585241936939-be4099591252?q=80&w=2070&auto=format&fit=crop');"></div>
+                    <div class="category-card-overlay"></div>
+                    <div class="category-card-content">
+                        <div class="category-icon"><i class="fa-solid fa-newspaper"></i></div>
+                        <h3 class="category-title">Journaux & Magazines</h3>
+                        <p>Actualités, analyses, publications périodiques...</p>
+                    </div>
+                </a>
+                <a href="blog.html?category=article" class="category-card fade-in">
+                    <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2070&auto=format&fit=crop');"></div>
+                    <div class="category-card-overlay"></div>
+                    <div class="category-card-content">
+                        <div class="category-icon"><i class="fa-solid fa-file-alt"></i></div>
+                        <h3 class="category-title">Articles Premium</h3>
+                        <p>Guides, tutoriels, stratégies exclusives...</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-book-open-reader"></i> Votre Portail vers le Savoir</h2>
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <div class="card-icon"><i class="fa-solid fa-book"></i></div>
+                    <h3 class="card-title">Accès Illimité</h3>
+                    <p class="card-description">
+                        Accédez à une vaste collection de livres, manuels scolaires et documents essentiels pour votre réussite.
+                    </p>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-icon"><i class="fa-solid fa-search"></i></div>
+                    <h3 class="card-title">Ressources Fiables</h3>
+                    <p class="card-description">
+                        Trouvez des informations vérifiées et des analyses pertinentes pour vos études, recherches et projets.
+                    </p>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3 class="card-title">Développement Personnel</h3>
+                    <p class="card-description">
+                        Investissez en vous-même avec des ouvrages sur le leadership, l'entrepreneuriat et les compétences de demain.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ce que nous t'apportons Section -->
+    <section class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title text-gold">Notre Engagement</h2>
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <div class="card-icon"><i class="fa-solid fa-check-double"></i></div>
+                    <h3 class="card-title">Qualité Garantie</h3>
+                    <p class="card-description">
+                        Chaque document est soigneusement sélectionné pour sa pertinence, sa qualité et sa valeur pédagogique.
+                    </p>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <h3 class="card-title">Prix Accessibles</h3>
+                    <p class="card-description">
+                        Nous rendons le savoir accessible à tous avec des prix adaptés à la réalité du marché africain.
+                    </p>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-icon"><i class="fa-solid fa-mobile-alt"></i></div>
+                    <h3 class="card-title">Accès Instantané</h3>
+                    <p class="card-description">
+                        Achetez et lisez instantanément sur votre téléphone, tablette ou ordinateur, où que vous soyez.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nouveautés Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-star"></i> Nouveautés</h2>
+            <div class="blog-posts" id="blogPostsContainer">
+                <!-- Les articles seront chargés dynamiquement ici -->
+                <div class="spinner"></div>
+            </div>
+            <!-- ✅ AJOUT : Bouton pour voir tous les produits, caché par défaut -->
+            <div id="seeMoreBtnContainer" class="text-center mt-3" style="display: none;">
+                <a href="blog.html" class="btn btn-primary"><i class="fa-solid fa-arrow-right"></i> Voir tous les produits</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Business Mobile Section -->
+    <section class="section" style="background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-mobile-screen-button"></i> Pourquoi "Business Mobile Afrique" ?</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem; color: var(--color-gray-dark);">
+                    Parce que nous mettons le savoir du monde <strong>directement dans votre poche.</strong>
+                </p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3 class="card-title"><i class="fa-solid fa-book-open"></i> Savoir</h3>
+                        <p class="card-description">L'accès à la connaissance pour tous</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title"><i class="fa-solid fa-mobile-screen-button"></i> Mobile</h3>
+                        <p class="card-description">La flexibilité d'apprendre n'importe où, n'importe quand</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title"><i class="fa-solid fa-earth-africa"></i> Afrique</h3>
+                        <p class="card-description">Pour l'émergence d'une génération éduquée et inspirée</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section bg-dark">
+        <div class="container text-center">
+            <h2 class="section-title text-gold"><i class="fa-solid fa-users"></i> Rejoins la Communauté</h2>
+            <p style="font-size: 1.2rem; color: var(--color-white); margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Le savoir est la seule chose qui s'accroît lorsqu'on le partage.<br>
+                <strong>Commencez votre voyage</strong> avec nous aujourd'hui.
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="https://wa.me/243993575428" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <i class="fab fa-whatsapp"></i> WhatsApp: 0993575428
+                </a>
+                <a href="mailto:businessmobileafrique@gmail.com" class="btn btn-secondary">
+                    <i class="fa-regular fa-envelope"></i> Email
+                </a>
+            </div>
+            
+            <div class="social-links" style="justify-content: center; margin-top: 2rem;">
+                <a href="https://www.facebook.com/share/1Ac9tVvW1f/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://wa.me/243993575428" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fa-solid fa-mobile-screen-button"></i> Business Mobile Afrique</h3>
+                    <p>
+                        La nouvelle génération d'entrepreneurs africains connectés. 
+                        Transforme ton smartphone en source de réussite.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fa-solid fa-link"></i> Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="about.html">À Propos</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Confidentialité</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fa-solid fa-phone"></i> Contact</h3>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: 0993575428</p>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: 84 054 2987</p>
+                    <p><i class="fa-regular fa-envelope"></i> Email: businessmobileafrique@gmail.com</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1Ac9tVvW1f/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://wa.me/243993575428" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Business Mobile Afrique | Tous droits réservés</p>
+                <p>Créé avec <i class="fa-solid fa-heart" style="color: var(--color-gold);"></i> pour la nouvelle génération d'entrepreneurs africains</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALE D'INSTALLATION PWA -->
+    <div id="pwaInstallModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content text-center">
+            <div class="modal-header" style="justify-content: center;">
+                <h3 class="modal-title"><i class="fa-solid fa-download"></i> Installer l'Application</h3>
+            </div>
+            <div class="modal-body">
+                <p>Pour une expérience optimale, ajoutez Business Mobile Afrique à votre écran d'accueil.</p>
+                <button id="pwaInstallBtn" class="btn btn-primary install-btn-wrapper" style="width: 100%;"><i class="fa-solid fa-download"></i> Installer l'Application</button>
+                <button id="pwaCloseInstallBtn" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Plus tard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ AJOUT : MODALE DE MISE À JOUR DISPONIBLE -->
+    <div id="updateAvailableModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content text-center">
+            <div class="modal-header" style="justify-content: center;">
+                <h3 class="modal-title"><i class="fa-solid fa-rocket"></i> Mise à jour disponible !</h3>
+            </div>
+            <div class="modal-body">
+                <p>Une nouvelle version de l'application est prête. Mettez à jour maintenant pour profiter des dernières fonctionnalités et corrections.</p>
+                <button id="updateNowBtn" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-sync-alt"></i> Mettre à jour maintenant</button>
+                <button id="updateLaterBtn" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Plus tard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
+    
+    <!-- Bytescale Upload Widget -->
+    <script src="https://js.bytescale.com/upload-widget/v4"></script>
+    
+    <!-- Firebase Init -->
+    <script src="js/firebase-init.js"></script>
+    <script src="js/utils.js"></script>
+    
+    <!-- main.js doit être chargé après firebase-init.js -->
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/pwa-install.js"></script>
+    <script src="js/update-handler.js"></script>
+    <script src="js/fcm-handler.js"></script>
+
+    <script>
+        // Enregistrement du Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker enregistré avec succès:', registration);
+                    })
+                    .catch(function(error) {
+                        console.log('Échec de l\'enregistrement du ServiceWorker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
