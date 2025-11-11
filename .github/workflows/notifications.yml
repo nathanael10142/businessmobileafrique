@@ -1,0 +1,33 @@
+# Nom du workflow
+name: Send Scheduled Notifications
+
+# Déclencheurs
+on:
+  # Exécute le script toutes les 15 minutes
+  schedule:
+    - cron: '*/15 * * * *'
+  # Permet de lancer le workflow manuellement depuis l'onglet "Actions" de GitHub
+  workflow_dispatch:
+
+# Tâches à exécuter
+jobs:
+  send-notifications:
+    runs-on: ubuntu-latest # Utilise une machine virtuelle Linux récente
+
+    steps:
+      - name: Checkout repository # Étape 1: Récupère le code de votre projet
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js # Étape 2: Installe Node.js sur la machine virtuelle
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Utilise une version stable de Node.js
+
+      - name: Install dependencies # Étape 3: Installe les dépendances (firebase-admin)
+        run: npm install
+
+      - name: Run notification script # Étape 4: Exécute votre script
+        run: node js/send-notifications.js
+        env:
+          # Injecte la clé secrète dans le script de manière sécurisée
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
