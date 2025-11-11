@@ -5,7 +5,7 @@ name: Send Scheduled Notifications
 on:
   # Exécute le script toutes les 15 minutes
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/5 * * * *'
   # Permet de lancer le workflow manuellement depuis l'onglet "Actions" de GitHub
   workflow_dispatch:
 
